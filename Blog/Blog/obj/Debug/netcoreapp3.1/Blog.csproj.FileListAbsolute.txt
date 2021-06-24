@@ -29,3 +29,11 @@ C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\obj\Debug\netcoreapp3
 C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\obj\Debug\netcoreapp3.1\Blog.pdb
 C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\obj\Debug\netcoreapp3.1\Blog.genruntimeconfig.cache
 C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\obj\Debug\netcoreapp3.1\Blog.csproj.CopyComplete
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Post\Index.cshtml.g.cs
+C:\Users\mathe\OneDrive\Área de Trabalho\Caelum\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Post\Novo.cshtml.g.cs
