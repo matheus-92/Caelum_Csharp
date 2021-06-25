@@ -1,5 +1,6 @@
 ﻿using Blog.Infra;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,48 +17,64 @@ namespace Blog.DAO
             IList<Post> listaDePost = new List<Post>();
 
             //Criar um objeto de SqlConnection
-            using (SqlConnection conexao = ConnectionFactory.CriarConexaoAberta())
+            using (BlogContext contexto = new BlogContext())
             {
-                // não precisa mais abrir a conexão
-
-                // Criar um comando para o BD
-                SqlCommand comando = conexao.CreateCommand();
-                comando.CommandText = "select * from Posts";
-
-                // Executar o comando
-                SqlDataReader leitor = comando.ExecuteReader();
-
-                // Ler linha a linhao resultado - para cada registro/linha a gente gera um Post
-                while (leitor.Read())
-                {
-                    Post post = new Post()
-                    {
-                        // precisa converter - o valor do dicionário não é o esperado
-                        Id = Convert.ToInt32(leitor["id"]),
-                        Titulo = Convert.ToString(leitor["titulo"]),
-                        Resumo = Convert.ToString(leitor["resumo"]),
-                        Categoria = Convert.ToString(leitor["categoria"]),
-                    };
-
-                    listaDePost.Add(post);
-                }
-
-                return listaDePost;
+                var lista = contexto.Posts.ToList();
+                return lista;
             }
         }
 
         public void Adicionar(Post post)
         {
-            using (SqlConnection conexao = ConnectionFactory.CriarConexaoAberta())
+            using (BlogContext contexto = new BlogContext())
             {
-                // criar comando para o banco de dados
-                SqlCommand comando = conexao.CreateCommand();
-                comando.CommandText = "insert into Posts (Titulo, Resumo, Categoria) " +
-                    "values ('" + post.Titulo + "', '" + post.Resumo + "', '" + post.Categoria + "')";
-
-                // executar o comando
-                comando.ExecuteNonQuery();
+                contexto.Posts.Add(post);
+                contexto.SaveChanges();
             }
         }
+
+        public IList<Post> FiltrarPorCategoria(string categoria)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                var lista = contexto.Posts.Where(p => p.Categoria.Contains(categoria)).ToList();
+                
+                return lista;
+            }
+        }
+
+        public void Remove(int id)
+        {
+            using(BlogContext contexto = new BlogContext())
+            {
+                Post post = contexto.Posts.Find(id);
+             
+                contexto.Posts.Remove(post);
+             
+                contexto.SaveChanges();
+
+            }
+        }
+
+        public Post BuscarPorId(int id)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                Post post = contexto.Posts.Find(id);
+
+                return post;
+
+            }
+        }
+
+        public void Atualiza(Post post)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                contexto.Entry(post).State = EntityState.Modified;
+                contexto.SaveChanges();
+            }
+        }
+
     }
 }

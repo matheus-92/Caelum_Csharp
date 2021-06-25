@@ -33,5 +33,40 @@ namespace Blog.Controllers
             dao.Adicionar(post);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Categoria([Bind(Prefix = "id")] string categoria)
+        {
+            PostDAO dao = new PostDAO();
+
+            IList<Post> lista = dao.FiltrarPorCategoria(categoria);
+
+            return View("Index", lista);
+        }
+
+        public IActionResult RemovePost(int id)
+        {
+            PostDAO dao = new PostDAO();
+            dao.Remove(id);
+
+            return RedirectToAction("Index");
+
+        }
+
+        public IActionResult Visualiza(int id)
+        {
+            PostDAO dao = new PostDAO();
+
+            Post post = dao.BuscarPorId(id);
+            
+            return View(post);
+        }
+
+        public IActionResult EditaPost(Post post)
+        {
+            PostDAO dao = new PostDAO();
+            dao.Atualiza(post);
+
+            return RedirectToAction("Index");
+        }
     }
 }
