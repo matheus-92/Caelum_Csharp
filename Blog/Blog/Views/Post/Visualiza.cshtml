@@ -5,6 +5,10 @@
 
     <form action="/Post/EditaPost" method="post">
 
+        <input type="hidden" name="publicado" value="@Model.Publicacao.ToString()" />
+
+        <input type="hidden" name="datapublicacao" value="@Model.DataPublicacao" />
+
         <input type="hidden" name="id" value="@Model.Id" />
        
         <label>
@@ -19,7 +23,7 @@
             Categoria: <input name="categoria" value="@Model.Categoria" />
         </label>
         
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Atualiza</button>
     </form>
 
 

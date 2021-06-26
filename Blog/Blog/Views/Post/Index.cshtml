@@ -6,17 +6,30 @@
             <th>Título</th>
             <th>Resumo</th>
             <th>Categoria</th>
+            <th>Publicado?</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var post in Model)
         {
-            <tr>
-                <td>@post.Titulo</td>
-                <td>@post.Resumo</td>
-                <td>@post.Categoria</td>
-                <td><a href="/Post/RemovePost/@post.Id"></a></td>
-            </tr>
+        <tr>
+            <td><a href="/Post/Visualiza/@post.Id">@post.Titulo</a></td>
+            <td>@post.Titulo</td>
+            <td>@post.Resumo</td>
+            <td>@post.Categoria</td>
+            <td>
+                @if (post.Publicacao)
+                {
+                    @Html.Raw(string.Format("{0:dd/MM/yyyy}", post.DataPublicacao))
+                }
+                else
+                {
+                    @Html.Raw("Não")
+                }
+            </td>
+            <td><a href="/Post/RemovePost/@post.Id">Remover</a></td>
+        </tr>
         }
     </tbody>
 </table>
