@@ -23,15 +23,24 @@ namespace Blog.Controllers
         [HttpGet]
         public IActionResult Novo()
         {
-            return View();
+            Post model = new Post();
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Adicionar(Post post)
         {
-            PostDAO dao = new PostDAO();
-            dao.Adicionar(post);
-            return RedirectToAction("Index");
+
+            if (ModelState.IsValid) 
+            { 
+                PostDAO dao = new PostDAO();
+                dao.Adicionar(post);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Novo", post);
+            }
         }
 
         public IActionResult Categoria([Bind(Prefix = "id")] string categoria)
@@ -63,10 +72,18 @@ namespace Blog.Controllers
 
         public IActionResult EditaPost(Post post)
         {
-            PostDAO dao = new PostDAO();
-            dao.Atualiza(post);
+            if (ModelState.IsValid)
+            {
+                PostDAO dao = new PostDAO();
+                dao.Atualiza(post);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Visualiza", post);
+            }
+           
         }
 
         public IActionResult PublicaPost(int id)
